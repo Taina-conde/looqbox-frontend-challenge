@@ -5,6 +5,8 @@ import HomeView from "../HomeView";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [pokemonSearched, setPokemonSearched] = useState("");
+
   useEffect(() => {
     const interval = {
       offset: 0,
@@ -14,10 +16,14 @@ function App() {
       setPokemons(response.results);
     });
   }, []);
+
+  const searchPokemon = (pokemon) => {
+    setPokemonSearched(pokemon);
+  };
   return (
     <div>
       <header></header>
-      <HomeView pokemons = {pokemons}/>
+      <HomeView pokemons={pokemons} onSearchPokemon={searchPokemon} />
     </div>
   );
 }

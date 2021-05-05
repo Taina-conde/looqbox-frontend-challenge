@@ -4,7 +4,7 @@ import PokemonList from "../PokemonList";
 const HomeView = (props) => {
   return (
     <div>
-      <Searchbar />
+      <Searchbar onSearchPokemon = {props.onSearchPokemon}/>
       <PokemonList pokemons = {props.pokemons}/>
     </div>
   );

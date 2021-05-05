@@ -7,15 +7,20 @@ const PokemonItem = (props) => {
     useEffect(()=> {
         P.getPokemonByName(props.pokemon.name)
         .then((result)=> {
+            
             setPokemonStats(result)
+            
         })
-    }, [])
+    }, [props.pokemon.name])
+    if (Object.keys(props.pokemon) === 0) {
+        return <span>loading</span>
+    } 
     return (
         <li>
-            <img src = {`${imagesBaseUrl}/${pokemonStats.id}.svg`} alt = {props.pokemon.name}/>
+            
             <span>{pokemonStats.name}</span>
-            <div>{pokemonStats.types.map( index => (<div>
-                {index.type.name}
+            <div>{pokemonStats.types !== undefined && pokemonStats.types.map( pokemon => (<div key ={pokemon.slot}>
+                {pokemon.type.name}
             </div>))}</div>
             
         </li>
