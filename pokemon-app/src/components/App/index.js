@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <header></header>
-      <HomeView pokemons={pokemons} onSearchPokemon={searchPokemon} />
+      <HomeView pokemons={pokemons} onSearchPokemon={searchPokemon} pokemonSearched = {pokemonSearched} />
     </div>
   );
 }

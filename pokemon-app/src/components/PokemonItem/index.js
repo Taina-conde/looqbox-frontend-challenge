@@ -5,19 +5,19 @@ import PokemonImage from '../PokemonImage';
 const PokemonItem = (props) => {
     const [pokemonStats, setPokemonStats] = useState({})
     useEffect(()=> {
-        P.getPokemonByName(props.pokemon.name)
+        P.getPokemonByName(props.pokemonName)
         .then((result)=> {
             
             setPokemonStats(result)
             
         })
-    }, [props.pokemon.name])
-    if (Object.keys(props.pokemon) === 0) {
-        return <span>loading</span>
-    } 
+    }, [props.pokemonName])
+    if (Object.keys(pokemonStats).length === 0) {
+        return <span>Loading</span>
+    }
     return (
         <li>
-            <PokemonImage id = {pokemonStats.id} name = {props.pokemon.name}/>
+            <PokemonImage id = {pokemonStats.id} name = {props.pokemonName}/>
             <span>{pokemonStats.name}</span>
             <div>{pokemonStats.types !== undefined && pokemonStats.types.map( pokemon => (<div key ={pokemon.slot}>
                 {pokemon.type.name}
