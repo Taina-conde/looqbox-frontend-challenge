@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
 import { P } from '../../api'
 import PokemonImage from '../PokemonImage';
+import {useHistory } from 'react-router-dom';
 
 const PokemonItem = (props) => {
     const [pokemonStats, setPokemonStats] = useState({})
+    let history = useHistory();
     useEffect(()=> {
         P.getPokemonByName(props.pokemonName)
         .then((result)=> {
@@ -11,6 +13,7 @@ const PokemonItem = (props) => {
         })
         .catch((error) => {
             console.log(error)
+            history.push(`/${props.pokemonName}`)
         })
     }, [props.pokemonName])
     if (Object.keys(pokemonStats).length === 0) {
