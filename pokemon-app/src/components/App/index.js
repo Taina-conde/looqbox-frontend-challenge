@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { P } from "../../api";
 import HomeView from "../HomeView";
@@ -21,10 +22,17 @@ function App() {
     setPokemonSearched(pokemon);
   };
   return (
-    <div>
-      <header></header>
-      <HomeView pokemons={pokemons} onSearchPokemon={searchPokemon} pokemonSearched = {pokemonSearched} />
-    </div>
+    <React.Fragment>
+      <Switch>
+        <Route path="/" exact>
+          <HomeView
+            pokemons={pokemons}
+            onSearchPokemon={searchPokemon}
+            pokemonSearched={pokemonSearched}
+          />
+        </Route>
+      </Switch>
+    </React.Fragment>
   );
 }
 
