@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import { P } from '../../api'
+import PokemonImage from '../PokemonImage';
 
-const imagesBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world'
 const PokemonItem = (props) => {
     const [pokemonStats, setPokemonStats] = useState({})
     useEffect(()=> {
@@ -17,7 +17,7 @@ const PokemonItem = (props) => {
     } 
     return (
         <li>
-            
+            <PokemonImage id = {pokemonStats.id} name = {props.pokemon.name}/>
             <span>{pokemonStats.name}</span>
             <div>{pokemonStats.types !== undefined && pokemonStats.types.map( pokemon => (<div key ={pokemon.slot}>
                 {pokemon.type.name}
