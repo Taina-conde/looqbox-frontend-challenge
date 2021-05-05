@@ -18,4 +18,8 @@ input {
   position: relative;
 }
 
+.form-box {
+  width: 400px;
+}
+
 /*# sourceMappingURL=searchbar.css.map */
