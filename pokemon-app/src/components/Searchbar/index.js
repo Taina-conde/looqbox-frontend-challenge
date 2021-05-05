@@ -7,8 +7,12 @@ const Searchbar = () => {
   const inputChangeHandler = (event) => {
     setQuery(event.target.value);
   };
+  const submitHandler = (event) => {
+      event.preventDefault();
+        
+  }
   return (
-    <form className="form-box">
+    <form className="form-box" onSubmit = {submitHandler}>
       <div className="input-group">
         <span className="input-group-text" id="addon-search">
           <BiSearchAlt2 size={20} />
