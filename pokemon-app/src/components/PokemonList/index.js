@@ -1,9 +1,10 @@
+import PokemonItem from '../PokemonItem';
 const PokemonList = (props) => {
   return (
     <ul>
       {props.pokemons.map((pokemon) => {
         console.log(pokemon);
-        return <li key={pokemon.name}>{pokemon.name}</li>;
+        return <PokemonItem key={pokemon.name} pokemon = {pokemon}/>;
       })}
     </ul>
   );
