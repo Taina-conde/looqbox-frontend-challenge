@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { P } from "../../api";
 import HomeView from "../HomeView";
+import NoMatch from "../NoMatch";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -30,6 +31,9 @@ function App() {
             onSearchPokemon={searchPokemon}
             pokemonSearched={pokemonSearched}
           />
+        </Route>
+        <Route path = "/">
+           <NoMatch/>
         </Route>
       </Switch>
     </React.Fragment>
