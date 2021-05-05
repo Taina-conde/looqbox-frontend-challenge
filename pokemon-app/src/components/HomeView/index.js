@@ -1,11 +1,11 @@
 import Searchbar from "../Searchbar";
 import PokemonList from "../PokemonList";
 
-const HomeView = () => {
+const HomeView = (props) => {
   return (
     <div>
       <Searchbar />
-      <PokemonList />
+      <PokemonList pokemons = {props.pokemons}/>
     </div>
   );
 };
