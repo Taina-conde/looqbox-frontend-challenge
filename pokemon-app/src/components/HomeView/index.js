@@ -1,4 +1,7 @@
+import Searchbar from '../Searchbar'
 const HomeView = () => {
-  return <div></div>;
+  return <div>
+      <Searchbar/>
+  </div>;
 };
 export default HomeView;
