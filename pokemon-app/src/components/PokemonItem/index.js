@@ -7,9 +7,10 @@ const PokemonItem = (props) => {
     useEffect(()=> {
         P.getPokemonByName(props.pokemonName)
         .then((result)=> {
-            
-            setPokemonStats(result)
-            
+            setPokemonStats(result) 
+        })
+        .catch((error) => {
+            console.log(error)
         })
     }, [props.pokemonName])
     if (Object.keys(pokemonStats).length === 0) {
