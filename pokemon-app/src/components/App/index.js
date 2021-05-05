@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./App.css";
-import { P } from './api/api'
+import { P } from '../../api'
 
 function App() {
   useEffect(() => {
