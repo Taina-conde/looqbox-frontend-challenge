@@ -1,0 +1,21 @@
+input {
+  background-color: white;
+  border: none;
+  border-radius: calc(0.5 * height);
+  color: gray;
+  font-family: inherit;
+  font-size: inherit;
+  height: 100%;
+  outline: none;
+  padding-inline-end: 44px;
+  padding-inline-start: 52px;
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+/*# sourceMappingURL=searchbar.css.map */

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import './searchbar.css'
 
 const Searchbar = () => {
   const [query, setQuery] = useState("");
@@ -7,8 +8,8 @@ const Searchbar = () => {
     setQuery(event.target.value)
   }
   return (
-    <form>
-      <div>
+    <form className = ''>
+      <div className='input-wrapper'>
         <input
           type="search"
           placeholder= "Search pokemon"
