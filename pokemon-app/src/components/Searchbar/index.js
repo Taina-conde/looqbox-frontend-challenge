@@ -10,6 +10,7 @@ const Searchbar = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     props.onSearchPokemon(query);
+    setQuery('');
   };
   return (
     <form className="form-box" onSubmit={submitHandler}>

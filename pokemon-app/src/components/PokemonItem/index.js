@@ -15,7 +15,7 @@ const PokemonItem = (props) => {
             console.log(error)
             history.push(`/${props.pokemonName}`)
         })
-    }, [props.pokemonName])
+    }, [props, history])
     if (Object.keys(pokemonStats).length === 0) {
         return <span>Loading</span>
     }

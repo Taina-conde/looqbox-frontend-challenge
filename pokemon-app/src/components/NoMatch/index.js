@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import BackToHome from '../BackToHome';
-const NoMatch = () => {
+const NoMatch = (props) => {
     let location = useLocation();
+    useEffect(() => {
+        props.onResetSearch();
+    }, [props])
     return(
         <div>
             <div>404</div>
