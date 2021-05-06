@@ -4,6 +4,7 @@ import "./App.css";
 import { P } from "../../api";
 import HomeView from "../HomeView";
 import NoMatch from "../NoMatch";
+import PokemonView from '../PokemonView';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -35,9 +36,13 @@ function App() {
             pokemonSearched={pokemonSearched}
           />
         </Route>
+        <Route path = "/pokemon/:pokemonName">
+          <PokemonView/>
+        </Route>
         <Route path = "*">
            <NoMatch onResetSearch = {resetSearch}/>
         </Route>
+        
       </Switch>
     </React.Fragment>
   );

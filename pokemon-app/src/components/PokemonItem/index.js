@@ -21,7 +21,7 @@ const PokemonItem = (props) => {
   }
   return (
     <li>
-      <Link>
+      <Link to = {`/pokemon/${props.pokemonName}`}>
         <PokemonImage id={pokemonStats.id} name={props.pokemonName} />
         <span>{pokemonStats.name}</span>
         <div>

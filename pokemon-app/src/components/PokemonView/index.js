@@ -1,7 +1,7 @@
-const PokemonView = () => {
+const PokemonView = (props) => {
     return (
         <div>
-
+            POKEMON VIEW
         </div>
     )
 }
