@@ -7,7 +7,14 @@ const PokemonList = (props) => {
       ) : (
         props.pokemons.map((pokemon) => {
           console.log(pokemon);
-          return <PokemonItem key={pokemon.name} pokemonName={pokemon.name} />;
+          return (
+            <PokemonItem
+              key={pokemon.name}
+              pokemonName={pokemon.name}
+              pokemonStats={props.pokemonStats}
+              onHandlePokemonStats={props.onHandlePokemonStats}
+            />
+          );
         })
       )}
     </ul>

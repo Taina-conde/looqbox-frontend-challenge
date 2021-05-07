@@ -4,29 +4,30 @@ import PokemonImage from "../PokemonImage";
 import { useHistory, Link } from "react-router-dom";
 
 const PokemonItem = (props) => {
-  const [pokemonStats, setPokemonStats] = useState({});
   let history = useHistory();
+  const {pokemonName, onHandlePokemonStats} = props; 
   useEffect(() => {
-    P.getPokemonByName(props.pokemonName)
+    P.getPokemonByName(pokemonName)
       .then((result) => {
-        setPokemonStats(result);
+        console.log(result)
+        onHandlePokemonStats(result);
       })
       .catch((error) => {
         console.log(error);
-        history.push(`/${props.pokemonName}`);
+        history.push(`/${pokemonName}`);
       });
-  }, [props, history]);
-  if (Object.keys(pokemonStats).length === 0) {
+  }, [history, pokemonName]);
+  if (Object.keys(props.pokemonStats).length === 0) {
     return <span>Loading</span>;
   }
   return (
     <li>
       <Link to = {`/pokemon/${props.pokemonName}`}>
-        <PokemonImage id={pokemonStats.id} name={props.pokemonName} />
-        <span>{pokemonStats.name}</span>
+        <PokemonImage id={props.pokemonStats.id} name={props.pokemonName} />
+        <span>{props.pokemonStats.name}</span>
         <div>
-          {pokemonStats.types !== undefined &&
-            pokemonStats.types.map((pokemon) => (
+          {props.pokemonStats.types !== undefined &&
+            props.pokemonStats.types.map((pokemon) => (
               <div key={pokemon.slot}>{pokemon.type.name}</div>
             ))}
         </div>

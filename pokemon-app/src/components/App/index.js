@@ -9,6 +9,7 @@ import PokemonView from '../PokemonView';
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonSearched, setPokemonSearched] = useState("");
+  const [pokemonStats, setPokemonStats] = useState({});
 
   useEffect(() => {
     const interval = {
@@ -26,6 +27,9 @@ function App() {
   const resetSearch = () => {
     setPokemonSearched("");
   }
+  const handlePokemonStats = (stats) => {
+    setPokemonStats(stats);
+  }
   return (
     <React.Fragment>
       <Switch>
@@ -34,10 +38,15 @@ function App() {
             pokemons={pokemons}
             onSearchPokemon={searchPokemon}
             pokemonSearched={pokemonSearched}
+            pokemonStats = {pokemonStats}
+            onHandlePokemonStats = {handlePokemonStats}
           />
         </Route>
         <Route path = "/pokemon/:pokemonName">
-          <PokemonView/>
+          <PokemonView
+            pokemonStats = {pokemonStats}
+            onHandlePokemonStats = {handlePokemonStats}
+          />
         </Route>
         <Route path = "*">
            <NoMatch onResetSearch = {resetSearch}/>

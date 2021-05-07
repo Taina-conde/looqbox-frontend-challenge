@@ -1,7 +1,7 @@
 const PokemonView = (props) => {
     return (
         <div>
-            POKEMON VIEW
+            {props.pokemonStats.name}
         </div>
     )
 }
