@@ -1,7 +1,7 @@
 import {
     RECEIVE_POKEMON_LIST,
     ADD_POKEMON_STATS,
-    SEARCH_POKEMON
+    ADD_SEARCHED_POKEMON
 } from '../actions/'
 
 export default function reducer(state = {}, action) {
@@ -21,12 +21,16 @@ export default function reducer(state = {}, action) {
                     }
                 }
             }
-        case SEARCH_POKEMON:
+        case ADD_SEARCHED_POKEMON:
             return {
                 ...state,
                 [action.name]: {
                     ...state[action.name],
-                    searched: true,
+                    name: [action.name],
+                    url: `https://pokeapi.co/api/v2/pokemon/${action.stats.id}/`,
+                    stats: {
+                        ...action.stats
+                    }
                 }
             }
         default:

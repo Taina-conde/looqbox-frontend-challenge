@@ -1,6 +1,6 @@
 export const RECEIVE_POKEMON_LIST = 'RECEIVE_POKEMON_LIST';
 export const ADD_POKEMON_STATS = 'ADD_POKEMON_STATS';
-export const SEARCH_POKEMON = 'SEARCH_POKEMON'
+export const ADD_SEARCHED_POKEMON = 'ADD_SEARCHED_POKEMON'
 
 
 export function receiveList(pokemons) {
@@ -16,9 +16,10 @@ export function addPokemonStats(name, stats) {
         stats
     }
 }
-export function searchPokemon(name) {
+export function addSearchedPokemon(name, stats) {
     return {
-        type: SEARCH_POKEMON,
-        name
+        type: ADD_SEARCHED_POKEMON,
+        name,
+        stats
     }
 }

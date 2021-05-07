@@ -1,23 +1,19 @@
 import { useEffect } from "react";
 import { P } from "../../api";
 import PokemonImage from "../PokemonImage";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { addPokemonStats } from '../../redux/actions';
 import { connect } from 'react-redux';
 
 const PokemonItem = (props) => {
-  let history = useHistory();
+  
   const {pokemonName, dispatch, pokemon} = props; 
   useEffect(() => {
     P.getPokemonByName(pokemonName)
       .then((stats) => {
         dispatch(addPokemonStats(pokemonName, stats))
       })
-      .catch((error) => {
-        console.log(error);
-        history.push(`/${pokemonName}`);
-      });
-  }, [history, pokemonName, dispatch]);
+  }, [pokemonName, dispatch]);
 
   return (
     <li>

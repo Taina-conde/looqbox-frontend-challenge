@@ -1,16 +1,38 @@
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./searchbar.css";
+import { connect } from "react-redux";
+import { P } from "../../api";
+import { addPokemonStats } from "../../redux/actions";
 
 const Searchbar = (props) => {
   const [query, setQuery] = useState("");
+
+  let history = useHistory();
+
+  const { pokemonNamesArr, dispatch } = props;
+
   const inputChangeHandler = (event) => {
     setQuery(event.target.value);
   };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onSearchPokemon(query);
-    setQuery('');
+    if (pokemonNamesArr.includes(query)) {
+      props.onSearchPokemon(query);
+      setQuery("");
+    }
+    P.getPokemonByName(query)
+    .then((stats) => {
+      dispatch(addPokemonStats(query, stats))
+      props.onSearchPokemon(query);
+    })
+    .catch((error) => {
+      console.log(error);
+      history.push(`/${query}`);
+    });
+    setQuery("");
   };
   return (
     <form className="form-box" onSubmit={submitHandler}>
@@ -32,4 +54,10 @@ const Searchbar = (props) => {
     </form>
   );
 };
-export default Searchbar;
+function mapStateToProps(pokemons) {
+  return {
+    pokemons,
+    pokemonNamesArr : Object.keys(pokemons),
+  };
+}
+export default connect(mapStateToProps)(Searchbar);
