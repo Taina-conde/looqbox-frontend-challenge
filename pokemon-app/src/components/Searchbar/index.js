@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./searchbar.css";
 import { connect } from "react-redux";
@@ -24,40 +24,47 @@ const Searchbar = (props) => {
       setQuery("");
     }
     P.getPokemonByName(query)
-    .then((stats) => {
-      dispatch(addSearchedPokemon(query, stats))
-      props.onSearchPokemon(query);
-    })
-    .catch((error) => {
-      console.log(error);
-      history.push(`/${query}`);
-    });
-    setQuery("");
+      .then((stats) => {
+        dispatch(addSearchedPokemon(query, stats));
+        props.onSearchPokemon(query);
+        setQuery("");
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push(`/${query}`);
+        setQuery("");
+      });
   };
   return (
-    <form className="form-box" onSubmit={submitHandler}>
-      <div className="input-group">
-        <span className="input-group-text" id="addon-search">
-          <BiSearchAlt2 size={20} />
-        </span>
+    <div className="searchbar">
+      <Link to="/">
+        <button className="close-search">Close</button>
+      </Link>
+      <form onSubmit={submitHandler} className= 'form-box'>
+        
+          
 
-        <input
-          className="form-control"
-          type="search"
-          placeholder="Search pokemon"
-          value={query}
-          onChange={inputChangeHandler}
-          aria-describedby="addon-search"
-          aria-label="Search"
-        />
-      </div>
-    </form>
+          <input
+            type="search"
+            placeholder="Search pokemon"
+            value={query}
+            onChange={inputChangeHandler}
+            aria-describedby="addon-search"
+            aria-label="Search"
+          />
+        
+        
+      </form>
+      <span  id="addon-search" className = 'search-icon text-center'>
+            <BiSearchAlt2 size={30} />
+          </span>
+    </div>
   );
 };
 function mapStateToProps(pokemons) {
   return {
     pokemons,
-    pokemonNamesArr : Object.keys(pokemons),
+    pokemonNamesArr: Object.keys(pokemons),
   };
 }
 export default connect(mapStateToProps)(Searchbar);
