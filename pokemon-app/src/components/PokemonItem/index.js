@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { P } from "../../api";
 import PokemonImage from "../PokemonImage";
 import { useHistory, Link } from "react-router-dom";
+import { addPokemonStats } from '../../redux/actions';
+import { connect } from 'react-redux';
 
 const PokemonItem = (props) => {
   let history = useHistory();
-  const {pokemonName, onHandlePokemonStats} = props; 
+  const {pokemonName, dispatch} = props; 
   useEffect(() => {
     P.getPokemonByName(pokemonName)
-      .then((result) => {
-        console.log(result)
-        //dispatch action 
+      .then((stats) => {
+        dispatch(addPokemonStats(pokemonName, stats))
       })
       .catch((error) => {
         console.log(error);
         history.push(`/${pokemonName}`);
       });
-  }, [history, pokemonName]);
+  }, [history, pokemonName, dispatch]);
   if (Object.keys(props.pokemonStats).length === 0) {
     return <span>Loading</span>;
   }
@@ -35,4 +36,4 @@ const PokemonItem = (props) => {
     </li>
   );
 };
-export default PokemonItem;
+export default connect()(PokemonItem);
