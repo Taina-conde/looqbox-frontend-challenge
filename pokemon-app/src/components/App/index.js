@@ -24,7 +24,7 @@ function App(props) {
       const pokemonListObj = formatPokemonList(pokemonListArr);
       dispatch(receiveList(pokemonListObj));
     });
-  }, []);
+  }, [dispatch]);
 
   const searchPokemon = (pokemon) => {
     setPokemonSearched(pokemon);
