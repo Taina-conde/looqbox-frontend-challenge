@@ -7,8 +7,6 @@ const HomeView = (props) => {
       <Searchbar onSearchPokemon={props.onSearchPokemon} />
       <PokemonList
         pokemonSearched={props.pokemonSearched}
-        pokemonStats={props.pokemonStats}
-        onHandlePokemonStats={props.onHandlePokemonStats}
       />
     </div>
   );

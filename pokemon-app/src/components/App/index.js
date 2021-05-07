@@ -11,7 +11,6 @@ import { connect } from "react-redux";
 
 function App(props) {
   const [pokemonSearched, setPokemonSearched] = useState("");
-  const [pokemonStats, setPokemonStats] = useState({});
   const { dispatch } = props;
 
   useEffect(() => {
@@ -32,25 +31,19 @@ function App(props) {
   const resetSearch = () => {
     setPokemonSearched("");
   };
-  const handlePokemonStats = (stats) => {
-    setPokemonStats(stats);
-  };
+ 
   return (
     <React.Fragment>
       <Switch>
         <Route exact path="/">
           <HomeView
             onSearchPokemon={searchPokemon}
-            pokemonSearched={pokemonSearched}
-            pokemonStats={pokemonStats}
-            onHandlePokemonStats={handlePokemonStats}
+            pokemonSearched={pokemonSearched}         
           />
         </Route>
         <Route path="/pokemon/:pokemonName">
           <PokemonView
-            pokemonStats={pokemonStats}
-            onHandlePokemonStats={handlePokemonStats}
-          />
+         />
         </Route>
         <Route path="*">
           <NoMatch onResetSearch={resetSearch} />

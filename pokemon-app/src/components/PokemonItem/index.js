@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const PokemonItem = (props) => {
   let history = useHistory();
-  const {pokemonName, dispatch} = props; 
+  const {pokemonName, dispatch, pokemon} = props; 
   useEffect(() => {
     P.getPokemonByName(pokemonName)
       .then((stats) => {
@@ -18,17 +18,17 @@ const PokemonItem = (props) => {
         history.push(`/${pokemonName}`);
       });
   }, [history, pokemonName, dispatch]);
-  if (Object.keys(props.pokemonStats).length === 0) {
+  if (Object.keys(pokemon.stats).length === 0) {
     return <span>Loading</span>;
   }
   return (
     <li>
-      <Link to = {`/pokemon/${props.pokemonName}`}>
-        <PokemonImage id={props.pokemonStats.id} name={props.pokemonName} />
-        <span>{props.pokemonStats.name}</span>
+      <Link to = {`/pokemon/${pokemonName}`}>
+        <PokemonImage id={pokemon.stats.id} name={pokemonName} />
+        <span>{pokemonName}</span>
         <div>
-          {props.pokemonStats.types !== undefined &&
-            props.pokemonStats.types.map((pokemon) => (
+          {pokemon.stats.types !== undefined &&
+            pokemon.stats.types.map((pokemon) => (
               <div key={pokemon.slot}>{pokemon.type.name}</div>
             ))}
         </div>
@@ -36,4 +36,9 @@ const PokemonItem = (props) => {
     </li>
   );
 };
-export default connect()(PokemonItem);
+function mapStateToProps(pokemons, { pokemonName }) {
+  return {
+    pokemon: pokemons[pokemonName]
+  }
+}
+export default connect(mapStateToProps)(PokemonItem);

@@ -14,8 +14,6 @@ const PokemonList = (props) => {
             <PokemonItem
               key={pokemon}
               pokemonName={pokemon}
-              pokemonStats={props.pokemonStats}
-              onHandlePokemonStats={props.onHandlePokemonStats}
             />
           );
         })
