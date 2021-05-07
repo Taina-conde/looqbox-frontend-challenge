@@ -1,16 +1,17 @@
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 const PokemonView = (props) => {
-    console.log('props', props)
+    const {pokemon} = props;
+    
     return (
         <div>
-            
+           {pokemon.name}
         </div>
     )
 }
-function mapStateToProps(pokemons) {
-    
+function mapStateToProps( pokemons, {match}) {
+    const { pokemonName } = match.params
     return {
-        pokemons,
+        pokemon: pokemons[pokemonName]
     }
 }
 export default connect(mapStateToProps)(PokemonView);
