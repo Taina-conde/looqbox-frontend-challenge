@@ -5,6 +5,7 @@ import { P } from "../../api";
 import HomeView from "../HomeView";
 import NoMatch from "../NoMatch";
 import PokemonView from '../PokemonView';
+import { receiveList } from '../../redux/actions'; 
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
