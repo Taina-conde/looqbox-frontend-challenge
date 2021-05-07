@@ -37,27 +37,22 @@ const Searchbar = (props) => {
   };
   return (
     <div className="searchbar">
-      <Link to="/" onClick = {() => props.onSearchPokemon("")}>
+      <Link to="/" onClick={() => props.onSearchPokemon("")}>
         <button className="close-search">Close</button>
       </Link>
-      <form onSubmit={submitHandler} className= 'form-box'>
-        
-          
-
-          <input
-            type="search"
-            placeholder="Search pokemon"
-            value={query}
-            onChange={inputChangeHandler}
-            aria-describedby="addon-search"
-            aria-label="Search"
-          />
-        
-        
+      <span id="addon-search" className="search-icon text-center">
+        <BiSearchAlt2 size={20} />
+      </span>
+      <form onSubmit={submitHandler} className="form-box">
+        <input
+          type="search"
+          placeholder="Search pokemon"
+          value={query}
+          onChange={inputChangeHandler}
+          aria-describedby="addon-search"
+          aria-label="Search"
+        />
       </form>
-      <span  id="addon-search" className = 'search-icon text-center'>
-            <BiSearchAlt2 size={30} />
-          </span>
     </div>
   );
 };
