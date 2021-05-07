@@ -37,7 +37,7 @@ const Searchbar = (props) => {
   };
   return (
     <div className="searchbar">
-      <Link to="/">
+      <Link to="/" onClick = {() => props.onSearchPokemon("")}>
         <button className="close-search">Close</button>
       </Link>
       <form onSubmit={submitHandler} className= 'form-box'>
