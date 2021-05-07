@@ -18,9 +18,7 @@ const PokemonItem = (props) => {
         history.push(`/${pokemonName}`);
       });
   }, [history, pokemonName, dispatch]);
-  if (Object.keys(pokemon.stats).length === 0) {
-    return <span>Loading</span>;
-  }
+
   return (
     <li>
       <Link to = {`/pokemon/${pokemonName}`}>
