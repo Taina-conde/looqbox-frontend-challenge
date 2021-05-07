@@ -4,13 +4,15 @@ import "./App.css";
 import { P } from "../../api";
 import HomeView from "../HomeView";
 import NoMatch from "../NoMatch";
-import PokemonView from '../PokemonView';
-import { receiveList } from '../../redux/actions'; 
+import PokemonView from "../PokemonView";
+import { receiveList } from "../../redux/actions";
+import { formatPokemonList } from "../../utils/helpers";
+import { connect } from "react-redux";
 
-function App() {
-  const [pokemons, setPokemons] = useState([]);
+function App(props) {
   const [pokemonSearched, setPokemonSearched] = useState("");
   const [pokemonStats, setPokemonStats] = useState({});
+  const { dispatch } = props;
 
   useEffect(() => {
     const interval = {
@@ -18,7 +20,9 @@ function App() {
       limit: 20,
     };
     P.getPokemonsList(interval).then(function (response) {
-      setPokemons(response.results);
+      const pokemonListArr = response.results;
+      const pokemonListObj = formatPokemonList(pokemonListArr);
+      dispatch(receiveList(pokemonListObj));
     });
   }, []);
 
@@ -27,35 +31,33 @@ function App() {
   };
   const resetSearch = () => {
     setPokemonSearched("");
-  }
+  };
   const handlePokemonStats = (stats) => {
     setPokemonStats(stats);
-  }
+  };
   return (
     <React.Fragment>
       <Switch>
-        <Route exact path="/" >
+        <Route exact path="/">
           <HomeView
-            pokemons={pokemons}
             onSearchPokemon={searchPokemon}
             pokemonSearched={pokemonSearched}
-            pokemonStats = {pokemonStats}
-            onHandlePokemonStats = {handlePokemonStats}
+            pokemonStats={pokemonStats}
+            onHandlePokemonStats={handlePokemonStats}
           />
         </Route>
-        <Route path = "/pokemon/:pokemonName">
+        <Route path="/pokemon/:pokemonName">
           <PokemonView
-            pokemonStats = {pokemonStats}
-            onHandlePokemonStats = {handlePokemonStats}
+            pokemonStats={pokemonStats}
+            onHandlePokemonStats={handlePokemonStats}
           />
         </Route>
-        <Route path = "*">
-           <NoMatch onResetSearch = {resetSearch}/>
+        <Route path="*">
+          <NoMatch onResetSearch={resetSearch} />
         </Route>
-        
       </Switch>
     </React.Fragment>
   );
 }
 
-export default App;
+export default connect()(App);
