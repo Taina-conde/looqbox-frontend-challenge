@@ -10,7 +10,7 @@ const PokemonItem = (props) => {
     P.getPokemonByName(pokemonName)
       .then((result) => {
         console.log(result)
-        onHandlePokemonStats(result);
+        //dispatch action 
       })
       .catch((error) => {
         console.log(error);
