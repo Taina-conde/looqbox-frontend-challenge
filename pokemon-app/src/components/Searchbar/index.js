@@ -4,7 +4,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import "./searchbar.css";
 import { connect } from "react-redux";
 import { P } from "../../api";
-import { addPokemonStats } from "../../redux/actions";
+import { addSearchedPokemon } from "../../redux/actions";
 
 const Searchbar = (props) => {
   const [query, setQuery] = useState("");
@@ -25,7 +25,7 @@ const Searchbar = (props) => {
     }
     P.getPokemonByName(query)
     .then((stats) => {
-      dispatch(addPokemonStats(query, stats))
+      dispatch(addSearchedPokemon(query, stats))
       props.onSearchPokemon(query);
     })
     .catch((error) => {

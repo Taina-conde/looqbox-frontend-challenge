@@ -26,7 +26,7 @@ export default function reducer(state = {}, action) {
                 ...state,
                 [action.name]: {
                     ...state[action.name],
-                    name: [action.name],
+                    name: action.name,
                     url: `https://pokeapi.co/api/v2/pokemon/${action.stats.id}/`,
                     stats: {
                         ...action.stats
