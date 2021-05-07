@@ -1,6 +1,7 @@
 import {
     RECEIVE_POKEMON_LIST,
-    ADD_POKEMON_STATS
+    ADD_POKEMON_STATS,
+    SEARCH_POKEMON
 } from '../actions/'
 
 export default function reducer(state = {}, action) {
@@ -18,6 +19,14 @@ export default function reducer(state = {}, action) {
                     stats: {
                         ...action.stats
                     }
+                }
+            }
+        case SEARCH_POKEMON:
+            return {
+                ...state,
+                [action.name]: {
+                    ...state[action.name],
+                    searched: true,
                 }
             }
         default:

@@ -31,20 +31,21 @@ function App(props) {
   const resetSearch = () => {
     setPokemonSearched("");
   };
- 
+
   return (
     <React.Fragment>
       <Switch>
         <Route exact path="/">
           <HomeView
             onSearchPokemon={searchPokemon}
-            pokemonSearched={pokemonSearched}         
+            pokemonSearched={pokemonSearched}
           />
         </Route>
-        <Route path="/pokemon/:pokemonName">
-          <PokemonView
-         />
-        </Route>
+        <Route
+          exact
+          path="/pokemon/:pokemonName"
+          component={PokemonView}
+        />
         <Route path="*">
           <NoMatch onResetSearch={resetSearch} />
         </Route>

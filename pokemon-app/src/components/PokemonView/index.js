@@ -1,8 +1,16 @@
+import {connect } from 'react-redux';
 const PokemonView = (props) => {
+    console.log('props', props)
     return (
         <div>
-            {props.pokemonStats.name}
+            
         </div>
     )
 }
-export default PokemonView;
+function mapStateToProps(pokemons) {
+    
+    return {
+        pokemons,
+    }
+}
+export default connect(mapStateToProps)(PokemonView);
